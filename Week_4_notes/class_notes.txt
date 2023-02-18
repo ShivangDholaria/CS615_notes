@@ -1,0 +1,37 @@
+Softwares:
+	Analogous to cars. Need specific things to run the software as a whole
+	Software is software whether its firmware or middleware since it can be changed, configured or compromised
+	Catagories:
+		Firmware/low level - sit very close to hardware so cannot be changed very easily, need specific tools to interface with it
+		OS - Core software that runs the system 
+		Add-on software - Software that are needed after OS is installed
+
+OS installation - 
+	Types of data:
+		Variable data - data that changes during day to day operations. Eg. log file, word file, text files, etc
+		Static data - data that does not change during day to day operations. Eg. OS files, librarys, etc
+		Shareable data - Data that is shared amoung different users in OS
+		Non-Shareable data - Data that is specific to the user itself
+
+Package management - 
+	Pitfalls - 
+		Each package manager has its own native package manager for installation, Eg. NodeJS has n[m, PHP has pear and pecl, Ruby has Gems, etc.
+		OS variants have their own package managers such as yum ,apt-get, pkgin, etc
+		Dependancies create problem as same package may be installed by different package manager. So while using the dependancy, we wont know from where the package is being pulled from
+		Each package manager assumes that it is incharge of all the packages and cannot know if other packages were installed via different ways
+		Integrity may be an issue as package managers generally pull the code from internet and run it. Its not known whether the code is safe to run or not. So a general practice should be to fetch the code from https and not http. Another approach may be by using signed packages. Package manager may support signed packages, The signed packages contain a digital signature in its metadata so that we can verify that the code that was uploaded was from a trusted individual.
+	
+Multi-user basics - 
+	Needs to be multi-tasking as multiple users are using the same resource.
+	Sharing of data amoung the users
+	Giving users permission for the access they require
+	Privileges need trust. Small group, big trust. large group, small trust
+	Zero trust principles:
+		No implicit trust given to anyone
+		Have an explicitly authentication and authorize
+		Should be time based
+		Give least privilege to the user, ie, give privilege to user that it requires
+	Users may keep some file private, some shareable
+	Users create their own unique usernames. 
+	Authentication of the user. This is something that they know, have and are.Its a proof of identity. MFA conbines this
+	

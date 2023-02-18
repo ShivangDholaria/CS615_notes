@@ -1,0 +1,61 @@
+MBR - Master boot record
+	contains the code where the os is located
+	consist of 512 bytes
+	present in the 1st sector of the storage device (Sector 0)
+	Last 2 bytes,0x55 and 0xAA are the magic numbers which give the location of the MBR and tells that it is a valid boot sector.
+	64 bytes just before this numbers consist of partition table that the BIOS can see that are present in the storage device
+	each entry in the partition table is 16 bytes long so 4 partitions can be made
+	Rest 446 bytes are for the 1st stage boot loader
+	
+Partition table entry(16 bytes) - 
+	1st byte tells the status of the partition whether its active or not
+	Next 3 bytes are used for the cylinder head sectoring schema. Its defined as:-
+		1. 1st byte give the head of the cylinder
+		2. 2nd byte is divided into 2 parts
+			2 bits are reserved of higher order of cylinder address, 6 bits are for the sector address
+		3. 3rd byte gives the cylinder address (plus the 2 2bits in the above)
+	Next byte gives the partition type for the OS residing 
+	Next 3 bytes give the address of the cylinder head of the last sector 
+	Next 4 and the one after that give the logical byte addressing of first and last sector
+
+Booting a web Server
+	(Steps) 1. Power on hardware
+		2. POST and other hardware gets initialized
+		3. first stage boot loader get loaded up (BIOS)
+		4. kernel gets loaded (OS)
+		5. init or systemd gets started
+		6. system processed and daemons gets started
+		7. web server runs along with its required processes
+
+File system - 
+	A system to store data in it
+	Data is stored one after another in sequential order
+	Metadata(16 bytes in size) in filesystem looks as follows:
+		2 bytes for the identifies
+		4 bytes for the permission as who can view(user, group, other) and what can be done with the file (read, write, execute)
+		1 byte represeting the owner of the file
+		1 byte for the group
+		4 bytes for the size of the file
+		4 bytes for the offset that indicated where the actual file is located. This is done since metadata will be consistant but the actual file is not. So the actual file is stored somewhere else
+	
+Unix Filesystem - 
+	Harddisk is divided into multiple partitions
+	Each partition has a boot block, super block and cylinder groups
+		Super block consist of the metadata of the filesystem which is found generally at the beginning of the partition
+		A Boot block may also be found is the partition is boot partition that consist of primary OS
+		Cylinder groups contain the actual data blocks where the files are actually stored
+	A cylinder group has a copy of super block, inode map, block bitmap, inode blocks and data blocks
+		a copy of super block is kept at the beginning for recovery if it gets corrupted or overwritten
+	The actual data is stored in the inode block and data block
+		the metadata of the data is stored in the inode block 
+		the actual data is written in the data block
+
+Fileype and filesystem supported by UNIX - 
+	Regular files(Hardlink) that the user creates
+	Directories that are like folders
+	Softlink files that point to the same file but have different names
+	Symbolic files that are like pointers which point to the file that they are linked to
+	Hardlink file that are file of their own
+	FIFO or named pipes that acts like a pipe. Anything written to it can be read from it in the same order
+	block special file for devices
+	socket file that provided communication with other process via APIs
