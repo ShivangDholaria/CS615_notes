@@ -27,3 +27,8 @@ ARP:
 	The concerned system sends a unicast reply to that client. but sometimes we get a reply from other systems too. This is called a "gratitious ARP" and it is a broadcast reply.
 	This all is for IPv4 but IPv6 does not use ARP, it uses NDP(Network Discovery Protocol).
 
+ICMP:
+	Each ICMP packet has a id to identify same packets
+	A data field is available in the ICMP packet for troubleshooting
+	ICMP is useful in traceroute as when the request packet reaches its destination, it sends back "destination unreachable,unreachable port" message back to user indicating that the packet has reached its destination.
+	 
