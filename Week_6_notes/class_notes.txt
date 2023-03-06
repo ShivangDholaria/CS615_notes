@@ -1,0 +1,29 @@
+Simple Request:
+	A connection is established between client and host.
+	Client send a request to the host
+	Host sens a responce to the client for the given request
+	The host then terminates the connection
+
+ktrace is a tool which traces other commands to see the internal system call that are issued or what IO operations are performed,etc. Since it is in binary, kdump is used to read it.
+
+nsswitch.conf file controls how the library functions look up information in the system. It also specify certain sources where the info can be looked up such as other files or external services. 
+hosts file was the DNS before DNS emerged. It contains the info of the known host in the network
+resolv.conf specifys how DNS lookups are to be done when a resolver routine is called. This file contains the IP addresses or the address of the DNS server that the system should use. 
+
+ARP is used to get the MAC addresses of the devices present in the network. 
+
+Connection is formed as follow:
+	First the ARP request is sent out to discover the DNS server in the network
+	The DNS server will send a reply by sending its MAC address back allowing to form the connection to the client.
+	Then a UPD packet is sent to the DNS server to get the AAAA record of the concerned client.
+	The DNS server sends the reply back with the correct info.
+	Now that we know the address of the client, we again send another ARP requrst to get the MAC address of the default router(if it does not exist in our local network).
+	Then we get the MAC address of our default router and prepare the packet with default router's address and is sent out.
+	The default router will send the packet out where it will reach the its destination.
+	Upon arrival, the client sends back the acknowledgement and the data requested.
+	
+ARP:
+	To get the MAC address of a system, the client sends a broadcast who-has request in the local network.
+	The concerned system sends a unicast reply to that client. but sometimes we get a reply from other systems too. This is called a "gratitious ARP" and it is a broadcast reply.
+	This all is for IPv4 but IPv6 does not use ARP, it uses NDP(Network Discovery Protocol).
+
