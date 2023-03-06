@@ -1,0 +1,18 @@
+Networking:
+	OSI Model - 7 layers - from top to bottom - Application, presentation, session, transport, network, link and physical
+	TCP/IP Model - 4 layers - from top to bottom - Application, transport, internet, link
+
+IPv4 address:
+	32 bit long address divided into 4 octets presenting the address
+	Divided into 2 parts: Network and host, to identify where it resides. If the network part match, then system can communicate without routers, else router is needed
+
+Network is a network and computer is a computer.
+There is no "Cloud" computer network, its just other people's computer.
+Network grows as more systems gets interconnected.
+Ases get their numbers assigned by IANA which assigns IPs.
+"whois" tools helps in getting the AS number.
+Peering is the connection used between different ASes to exhange information amoung eachother via BGP.
+Peering is done at specific geographic points around the world. PeeringDB can give us the info about different IXPs or Internet eXchange Points.
+
+
+tcpdump cannot be used by normal user as in a multi-user environment, user can see other user's data flowing in the network.
