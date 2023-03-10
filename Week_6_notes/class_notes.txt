@@ -6,7 +6,7 @@ Simple Request:
 
 ktrace is a tool which traces other commands to see the internal system call that are issued or what IO operations are performed,etc. Since it is in binary, kdump is used to read it.
 
-nsswitch.conf file controls how the library functions look up information in the system. It also specify certain sources where the info can be looked up such as other files or external services. 
+nsswitch.conf file controls how the library functions look up information in the system. It also specify certain sources where the info can be looked up such as other files or external services. It gives the system the sources to look up to. 
 hosts file was the DNS before DNS emerged. It contains the info of the known host in the network
 resolv.conf specifys how DNS lookups are to be done when a resolver routine is called. This file contains the IP addresses or the address of the DNS server that the system should use. 
 
@@ -31,4 +31,10 @@ ICMP:
 	Each ICMP packet has a id to identify same packets
 	A data field is available in the ICMP packet for troubleshooting
 	ICMP is useful in traceroute as when the request packet reaches its destination, it sends back "destination unreachable,unreachable port" message back to user indicating that the packet has reached its destination.
-	 
+	
+
+
+
+
+
+
