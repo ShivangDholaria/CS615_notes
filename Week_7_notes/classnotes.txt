@@ -1,0 +1,43 @@
+DNS:
+	A sytem that looks up the IP address of the given host
+	In the earlier days, the hosts file had the IP addresses of the hosts connected in the network
+	Thoses IP addresses were maintained at the NIC(Network Information Control center).
+	That file was updated whenever a new host was connected and an IP was assigned
+	That was the RFC597 which became not suitable to keep the addresses so RFC810 was introduced. This contained the information about the host name mapped to their host addresses along with the network and gateway info and host OS.
+	
+	The DNS came in picture in 1983 when updating the hosts was became tidious everytime a new host would be assigned a new IP
+	
+	DNS is a tree like structure wherein there is a root node that is called "dot" which has subnodes called as the zones that consist of domains and subdomains. TLDs or the Top level domains are the domains that are just under the "dot" node. Further the domains are called third level domains and so on.
+	
+	To divide a zone, each level has an "authority". The authority is not central but delegated within each zone. So the "dot" zone delegates the authority over the top level zone and the top level zones delegates the authority to the third level zones and so on.
+	
+	In this structure, each node must have a RR(Resource Record) that contains the information about that node, There are many different types of the records and some of them are:
+		A record - This contian the IP address of the hosts
+		CNAME record - this contains the symbolic link of the node that points to another record in the structure
+		MX record - this contains the mail server info
+		NS record - this contains the records associated with the DNS or DNSSEC
+	
+	The domain name is created by starting from the lowest level and going to the highest level joinin it by a ".", i.e., www.google.com starts from "www" domain, then goes to "google" domain and finally to "com" domain. For a domain name to become a fully qualified domain name, it has to end with a ".".
+	
+	The DNS query come with reply from authoritative name server and resolve server. The authoritative name server provide the query with the answer while the resolver simply relays the answers it has been given by the right name server.
+
+	Resolving a name:
+		The name of the URL is resolved starting from top level domain to the bottom level domains
+		First the root nameserver is asked a query for the given top level namerserver. It sends the responce that concern that TLD 
+		Now the second LDs are sent a query requesting for the location in that zone. Again the responce is sent that concerns all the given LDs
+			This goes on until we get the IP addresses for the given name server.
+		All the results in the end will be cached as if the same url is accessed, we wont be needing to again ask the root nameserver for the addresses of the IP of our url
+	
+	/etc/namedb/root.cache is the file which contains the location of the nameservers when the system bootstraps itself and get updates everytime it gets booted up to check if the root server are there or not and overwrites ifself
+	There are only 13 root nameservers as the information of those servers get fit in the 512 UPD packet so that it needs to only send the packet once.
+	Those 13 root nameservers are authorities and they are actually maintainced by 12 other international and independent organisations. 
+	IP addresses can also be lookedup to get the hostname. It uses the PTR record, i.e., the POINTER record 
+	The reverse lookup works as follows:
+		First the root server is contacted to the address for the arpa.
+		After getting the responce, we ask for the in-addr.arpa.
+		We get a responce of addresses which have the location of it.
+		Now we start the lookup with the first-octet of the IP address along with the in-addr.arpa, i.e., first-octet.in-addr.arpa.
+		We so this until we resolve the whole IP addresses.
+	For the DNS recording sending the record back to the client, there are measures take to ensure the authenticity of the record so that client does get the manipulated record. This is by the RRSIG which contains the information of the signature of the UDP packet.
+
+
