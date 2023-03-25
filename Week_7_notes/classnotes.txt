@@ -41,3 +41,4 @@ DNS:
 	For the DNS recording sending the record back to the client, there are measures take to ensure the authenticity of the record so that client does get the manipulated record. This is by the RRSIG which contains the information of the signature of the UDP packet.
 
 
+

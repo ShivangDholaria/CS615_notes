@@ -1,0 +1,19 @@
+EMAIL - 
+	Components involved:-
+		MUA(Mail User Agent) - Program used to read and compose emails.
+		MTA(Mail Transfer Agent) - The "mail server" that sends the mail to reciever's MTA.
+		MDA(Mail Deliviery Agent) - Program that recieves the mail after passing it throught some security checks and stuff. This may sort, duplicate forward or process the mail in some way.
+		Access agents - External programs that fetch the mails from the MDA to the user who can access it via other protocols such as POP or IMAP
+
+	MTA - This is were the SMTP is used. The local MTA in linux, i.e., postfix assigns a unique identifier and a message-id which contains the unique identifier for tracking purpose. Then it tries to find the host via IPv6 and IPv4 and whichever has respective hostnames available, the mail is sent via that IP address. The mailing queue is the then populated with that mail and is assigned a different identifier which can be tracked easily. If the hostname were internal, there it would have been sent without and additional network traffic but if it is to an outsider(someone not in the internal mail network), then MX record is looked up to get the domain of the sender's mailing address. After getting the records A and AAAA lookups are done to get the address of the servers residing there. A TCP connection is made on the recieving server to trasnfer the mail if connection is established otherwise a different IP version is used to establish TCP connection. On being successful, the mail is then queued. 
+		On the recieving side, we can use the identifiers to check whether the mail was recieved or not. After recieving it, other processes check the mail for spam filtering and stuff. As the other processes take the mail, the mail queue is cleared up. But after all the checks, the mail is again recieved and it has other different identifier to it. It still get accepted as it contains the initial unique identifier from the sender's side. It then get transferred into the local MDA. That MDA will process the mail according to the user's preferences.
+
+	The communication between sending and receiving MTAs is as follows:
+		- Client and server form a connection and then client sends EHLO command. 
+		- The server replies back with a bunch of commands that are available to the client.
+		- For encrypted connection, the client selects the STARTTLS command to begin encrypted communication. 
+		- The servers sends the OK message and perform a TLS handshake.
+		- The remaining communication that follows after it is encrypted throughout the transit.
+	 
+	The problem with having STARTTLS option shown to user rather than having selected is that if some intruder performs man-in-the-middle attack, he can strip away options when the client sends EHLO command during connection establishment. This will leak sensitive information of the client. And not all MTAs support TLS.
+	To know whether the MTA has support for TLS or not, the DNS is used to look it up. A special prefix called "_mta-sts" is added before the domain. If the domain has TLS then it replies back with the current version of the policy along with its identifier. The policy file can be retrieved and checked for its options. The "mode" option tells the behavior of the MTA based on the value assigned to it. The "enforce" value makes sure that the MTAs do not send the message of the host that fail MX matching or certificate validation or that donot support STARTTLS. 
