@@ -16,4 +16,15 @@ EMAIL -
 		- The remaining communication that follows after it is encrypted throughout the transit.
 	 
 	The problem with having STARTTLS option shown to user rather than having selected is that if some intruder performs man-in-the-middle attack, he can strip away options when the client sends EHLO command during connection establishment. This will leak sensitive information of the client. And not all MTAs support TLS.
-	To know whether the MTA has support for TLS or not, the DNS is used to look it up. A special prefix called "_mta-sts" is added before the domain. If the domain has TLS then it replies back with the current version of the policy along with its identifier. The policy file can be retrieved and checked for its options. The "mode" option tells the behavior of the MTA based on the value assigned to it. The "enforce" value makes sure that the MTAs do not send the message of the host that fail MX matching or certificate validation or that donot support STARTTLS. 
+	To know whether the MTA has support for TLS or not, the DNS is used to look it up. A special prefix called "_mta-sts" is added before the domain. If the domain has TLS then it replies back with the current version of the policy along with its identifier. The policy file can be retrieved and checked for its options. The "mode" option tells the behavior of the MTA based on the value assigned to it. The "enforce" value makes sure that the MTAs do not send the message of the host that fail MX matching or certificate validation or that donot support STARTTLS.
+SPAM - Used to filter mails that may/are malicious or just useless. Mail generally go throught some rules or checks to get determined as spam mail or not. Typically, "spamassasin" marks a mailas spam if there are some headers missing from the mail. But if the headers are included, the mail does not get marked as spam. 
+	The few mandatory headers of a mail are:
+		- From: It is the STMP "mail from" header indicating the origin of the mail
+		- Date: The timestamp which indicates when the mail was sent\
+	Mail can also consist of mail optional headers such as:
+		- From: This is different from the Mandatory header as it indicates the user address who is sending the mail
+		- To: This header indicates the recipient of the mail
+		- Subject: This header indicates the subject of the mail
+	The main content of the mail is the data of the mail. This may contain some txt, attachments, images, encodings, etc.
+	Earlier, SMTP MTA could be relay mail to different domain from anybody to anybody. This led to mail abuse so now, mail can only be relays from the domains that are themselves resposible for.
+	SMTP does not provide authenticity since it only check is headers exist or not and not if the header is proper or not.
