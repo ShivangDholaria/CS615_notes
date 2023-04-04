@@ -1,0 +1,56 @@
+Tools - 
+	Writing tools for OS, DB, etc.
+	Prebuilt and user-made
+	picking right tool based on the problem faced in the system
+	Automate where ever possible if the task is repitative
+	Adjust the automated script along the way
+	All benifit from automation
+	Takes time to debug, scaling increases the complexity, assumptions about environmnet decreases, may lead to loss of audit trial, needs documentation.
+	Approaching automation - 
+		Scripting - 
+			Done to simple tasks
+			suitable for the user who makes it
+			customized around the user's environment
+		Programming - 
+			Done for less simple to kinda complex tasks
+			Suitable for few users bases
+		Software developement - 
+			USed for really complex tasks
+			Needs formal approach before making it
+			Requires consistant support for all those who use it
+	Some guidlines - 
+	
+		To choose the right tool users, dependencies, scope, goals, etc must be looked upon
+		Names of variables and functions should be descriptive
+		Comments should describe why the code does it intended task and not tell exactly what the code does
+		Don't use literals( magic numbers) but give them descriptive names which states their purpose
+		Make it as readable as possible so its easy to debug
+		Check input whenever possible
+		Validate return values where ever possible
+		Handle errors explicitily
+		Makes as less assumptions as possible when writing the code
+		Tool must be safe in hostile environment and never trust the environment
+		Instead of denying inputs, make a allow list
+		Check and clean all inputs
+		Know the editor you use
+		Know how to use debugger
+		Isolate the code that causes the error and fix that, rather than debugging the whole source code
+		Document the tool
+		Tool should what it is intended to do and not something else
+	
+	Debug - 
+		Give others the code, get feedback and improve
+		Report the bug if found
+		Describe the bug, reproduce it(how much ever if possible), what was expected and what actually came
+	
+	Version control system and collab - 
+		Keep a VCS
+		Commit message should be meaningful which tells the how and why of the updates
+	
+	Scalability - 
+		Keep it simple
+		Keep config and code seperate
+		Optimize code later after everything works fine
+		Fix all warning and errors before deploying it 
+	
+

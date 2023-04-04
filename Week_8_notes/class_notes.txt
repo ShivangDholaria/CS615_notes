@@ -28,3 +28,4 @@ SPAM - Used to filter mails that may/are malicious or just useless. Mail general
 	The main content of the mail is the data of the mail. This may contain some txt, attachments, images, encodings, etc.
 	Earlier, SMTP MTA could be relay mail to different domain from anybody to anybody. This led to mail abuse so now, mail can only be relays from the domains that are themselves resposible for.
 	SMTP does not provide authenticity since it only check is headers exist or not and not if the header is proper or not.
+
