@@ -1,0 +1,21 @@
+Backups:
+	Full backup - complete copy of full data
+	Incremental backup - contains only the data that has been changed from the previous backup data
+	Decremental backup - contain the data that has been changed from the last full backup
+	
+	Full backups backs up all of the data at the desired interval, using up lot of space and time. This causes slow backups but it is very helpful since faster restoration happens in case of data loss.
+	Differential backup backs up the data that has been changed from the previous back up. This is kinda more convenient than full back up as it takes less time and space as compared to full back up but its downside is when restoring data, the last full backup data and the last backed up data needs to be compared to get the complete data.
+	Incremental backup backs up the data has only been changed since last full backup. So if only 1 block of data has been changed since last full back, only that block is backed up. Pros of this backup is that it consumes the least amount of time and space during a backup and its Cons are that it has the slowest restoration time and has higher chance of recovery failure since all the backups are chained with the previous incremental backups.
+
+	If backup cannot be performed than the backup was useless.
+
+	If data is lost, we need to do something. This includes setting up Recovery Point Objective(RPO), i.e., the time window and granularity of the backup point. So if the backup window is set to be 6 hours, then if the lost data is not revcovered within 6 hours it is lost, Recovery Time Objective(RTO) is the time needed to restore the data, which includes staff availability is there is person involved who takes care of the support stuffs, resource availability as if might happen that some write operations could be under when you want data to be restored, time to restore data as backups are needed to be read in order to find the data that was missing
+	
+File snapshots:
+	Better than backups(Kind of)
+	Givens the read-only file of the entire file system that was backed up
+	Can be made instantaniously
+	Takes really small amount of space 
+	Can be mounted to see the entire file system at the given time it was snapshotted
+	Downside is that it is bound to the system it was taken on, so can't be taken offshore
+	
