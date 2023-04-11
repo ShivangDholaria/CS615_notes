@@ -19,3 +19,29 @@ File snapshots:
 	Can be mounted to see the entire file system at the given time it was snapshotted
 	Downside is that it is bound to the system it was taken on, so can't be taken offshore
 	
+Monitering:
+	Needed to run service.
+	If you cant moniter whats going on, its as good as not providing the proper service to the user
+	Logs to the rescue if problem occurs
+	Logs give the overview of the problem(what has happened) but not the actual problem
+	To look for logs, we need logs
+	Need baseline to know what is happening
+	For baseline, we need to know the users, the applications and patterns and your system
+	
+	Events:
+		Something that happens either constantly, often or rarely
+		can be logged
+		may be comprised with other events too
+		can be something new or just be the everyday stuff
+		
+	Metrics:
+		Correlation of relevant events
+		can help in making decisions
+		
+	Collecting the data:
+		Use counters(HTTP status codes), Timers (time taken to complete the event) and Threshold(If something take longer time than intended, something is happening)
+		To know the system, check execution time, CPU usage, IO operations, user activity, etc. 
+		To know the network, check which application uses which port, how and what packets are coming in and out, where the client is originating from, etc
+		Have context to understand what is happening with the system
+		Keep the necessary info in the logs. More or less does not help 
+		
