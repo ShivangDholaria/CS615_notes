@@ -1,0 +1,46 @@
+Configuration Management:
+	System gets used by users for a specific task
+	So data is generated, file are created, modifies or removed
+	To facilitate these, software are made, added, upgraded or removed
+	For these softwares to run, systems are created, copied or decommisioned
+	Containers/Instances something that are created when in need and destoryed upon their usage 
+	
+	Configuration management was discover by somethinge very trivial such as setting up a server for a specific task and now how to do the same thing for other users
+	Since copying data from one system to another is not very efficient, a crental system is created that stores and host the updates to the system, which is then used by other relevant users to keep their systems up-to-date
+	Copying data is not generally recommended since most of the system are not identical, meaning not same as the system in which the software was developed,
+	
+	This centralized system works if there are less number of hosts but creates problem when scaling is required
+	So we do exactly there reverse thing, ie, instead of pushing data from central system to the relevant hosts, the relevant hosts pull the data from the central system
+	
+	Base Bonfig vs Service Config:
+		Base Config systems are unique but have predictable properties such as network configs, other criticl services, and so on.
+		Service specific systems are the systems that are specific to the service that it provides such as DNS server, HTTP server, etc. These systems need the correct software packages, correct configs, 
+
+	If the different softwares use the same services, we can modularize those services into a single service which can be used by those softwares thus reducing the duplication of code
+
+	Job of Config Manager is not to make changes to the system, rather to assert states to the system
+	Different states of CM:
+		1) Unconfigured - These system does not have the required services, software packagesm, etc installed in it
+		2) Configured - This is the state which has all the required services, software packeges, etc installed into the system and the system is ready for the production. As the time goes on, there may be updates applies to the configured system as the users grow in number to facilitate them
+		3) Deviant - This is the state where in someone may have added or changes the configuration settings which now interferes with the current services. The CM does regular checks and if any anomaly is detected, it restores the system according to its config settings
+		4) Unknown - This is the state where in the system is not well defined. This might be the case wherein the CM is not running on the system or applying wrong configs due to error. The admin might not even know if the system goes into the unknown state. System can recover from this state by a simple reboot and CM works it magic.But if not then the state can be identified by monitering the system and putting it back in the deviant state, from where it goes back to configed state via CM
+	
+	Idempotency is the property wherein a function, with its own result as input give the same output. Something like "cat file.txt", this gives the output content of the text file everytime its called. 
+	So a good CM system must be:
+		1) Idempotent - the user need to make the decision on defining what is idempotent and what's not
+		2) It should be applied only when its necessary
+		3) It should eventaully lead all the systems to be in a consistent state, ie, all the system using the same CM must have the same state. In case if one of the system is unable to change it's state, user needs to take action on what to do. Monitering and Service Orchestration are some of the things that can be used to address that issue
+	
+	CM themselves are complex systems which manage other complex systems in complex ways
+	CMs are inherently trusted. So if not managed correctly, they can break down other system completely
+	So staged rollout plans must be placed inorder to recover from this.
+	Automatic error dectection systems and rollbacks could be used for recovery
+	Authentication and privilges also need to be kept in check since whoever has the access to CMs has indirectly root access to the other systems that use it. 
+	
+	CM requirements:
+		- Needs to install software
+		- Needs to manage service as required, ie, to start, restart or keep it running
+		- Needs to add/remove file permissions/ownerships
+		- Needs to add other static file to add content
+		- Needs to generate host-specific config files 
+		- Needs to be able to execute command that go beyond it permission and collect necessary data to report back to the central service 
