@@ -44,3 +44,6 @@ Configuration Management:
 		- Needs to add other static file to add content
 		- Needs to generate host-specific config files 
 		- Needs to be able to execute command that go beyond it permission and collect necessary data to report back to the central service 
+
+	Containers:
+		
