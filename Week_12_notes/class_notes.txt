@@ -1,0 +1,35 @@
+Assessing risk:
+	Its like a trade off to help increase the resilience of the system to specific risks
+	It stretches across all the stack of IPs. It is considered at every layer
+	The storage models options increase the risk of exposing the data as we move from DAS to cloud. This is compensated by partitioning the disk and using different mount points on that disk
+	Firmwares and IAMs can be compromised to give authorization to unauthorized accounts
+	Softwares, CMs, Containers can also be hacked and manipulated to gain access to the system or abuse it
+	
+	It can be loss to access the data, integrity of data, availability of services, company's reputation, monatary loss, etc
+		
+	Assessing what is at risk helps in prioritizing what to needs to secured urgently and what not
+	It included identifyinh assets, threats, vulnerability, determine the likelihood of damage that can be done, recovery if the data is lost, cost of defenc.
+
+	System cannot be secure, there will be some or the other exploit but you can minimize the risks by considering the scope.
+
+Threat model:
+	A model that identifies what is needed to be protected, from whom it needs to be protected, and the threats that cannot be defended
+	It starts with the known threats. Then the important threat that are into consideration are identified, and lastly the threats that you can defend against. Finally we decide which threats can be defeneded against
+	
+	STRIDE:
+		A model which maps threats to it property.
+		Spoofing - Authenticity
+		Tampering - Integrity
+		Repudiation - Non-Repudiation
+		Info Disclosure - Confidentiality
+		Denail of Service - Availability
+		Elevation of Priviledge - Authorization
+	DREAD+D:
+		Assiging numeric value to the threat based on
+		- Damage - How bad it might be
+		- Reproducability - How easily it can be created
+		- Exploitability - How easy it is to launch
+		- Affected Users -  How many can be impacted
+		- Discoverability - How easy is it to discover the perpetrator
+		- Detection - How hard it is to find out
+		
