@@ -32,4 +32,71 @@ Threat model:
 		- Affected Users -  How many can be impacted
 		- Discoverability - How easy is it to discover the perpetrator
 		- Detection - How hard it is to find out
+
+Defence in Depth:
+	Multiple layers of defence are put to increase the security
+	Its never assumed that having 1 layer of security is sufficient to prevent all incoming threats
+	Also, it is never assumed that the layers of security deployed will never be broken or an attacker will never be able to intrude into the system
+	
+Attack life cycle:
+	The path that an attacker follows to intrude a system
+	1st step is to do a recon, ie, to gain info about the target
+	2nd step is to comprise the weak links that were identified from the recon
+	3rd step is to keep the system comprised. This is done by uploading a persistent backdoor what allows the attacker to gain access to the system at will
+	4th step is to gain privileges as usually the systems that are hacked have very low priviledges to gather any useful info
+	5th step is to perform internal recon to identify other system within the victims network for sensitive info if the victim does not have any sensitice info
+	6th step is to maintain the privileges gained and cover up the traces from the system. The data that the attacker was after is stolen from the victim
+
+Zero trust:
+	It is an assumption made that the environment is hostile or compromisde so that it allows the design of security layers at all possible places
+	It can be using encryption to send and recieve data, authenticate and authorize user to perform certain tasks, etc
+	 
+Crypto:
+	Cryptography can help in ecrypting the messages to provide addtional security.
+	Provides Confidentiality, integrity and authenticity to the messages
+	But each property has their own flaws
+	Confidentiality:
+		This makes sure that data can only be read by the sender and reciever that have agreed upon a key. No one else would be able to read the content of the message if intercepted
+		Though it lacks the autheticity of the message since the reciever cannot know who the sender was
+		The key exchanged, if not discarded or rotated after certain time, may get known to the attacker, thus able to read the content of the message
+		So use a key management system to prevent this
+	Integrity:
+		This property ensures that the data was complete, accurate and consistent throughout the transit, ie, no modification were done
+		So a checksum is used to check whether the data is the actual data or someone tampered with it
+		This too has drawbacks as the checksum might be tampered with the checksum of the corrupted data which the receiving end may accept thus allowing attacker to send his message
+		Also verfying the data with comprised tools not help 
+		
+	Hashing is different from encryption
+	Hashing the data will not give the original data back when when reverse the operation while encrypting the data will give us the original data by decrypting it using the key
+	Hashing usually involves salting the data, ie. adding additional data to generate the hash. As hashing using a particular algorith will give the same hash, if attacker get to know the algo, he can brute force to generate the hash and get the password by doing a reverse lookup. Salting prevents it as salt data can be anything
+	
+	Authenticity:
+		This property allows the to verify that the sender who is sending the data is the actual sender or someone else
+		But if the attacker is able to impersonate as the actual sender, then he can send malicious data to the victim and compromise the system
+		To prevent that, a signature is also available to verify it so that we can  be sure the message was authentic
+		
+	Vulnerability classes:
+		Memory management:
+			- Using uninitialized memory
+			- Buffer/stack overflow
+			- Dangling pointer
+		Input validation:
+			- code injection
+			- Format attack
+		Race condition:
+			- Time of check, time of use where 2 system calls so another process can invalidate the check causing race condition
+			- Symlink attack
+		Priv escalation:
+			- XSS, CSRF
+			- setiud elevation
+		Social Engineering:
+			- Phishing
+			- waterhole attack
+		Brute-force attack:
+			- Password cracking
+			- DOS
+		Information disclosure:
+			- Insufficient permissions
+			- MITM
+			- lack of encryption, authentication or authorization
 		
