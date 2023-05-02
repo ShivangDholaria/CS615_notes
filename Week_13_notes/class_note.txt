@@ -1,0 +1,16 @@
+First, do no harm
+You have responsibility when you are sys admin
+Having elevated privs mean you can do many things that could be morally wrong but fun
+Sys admin is someone who manages other's data
+Being legal is not always being ethical
+Place public interest above everything, even personal, business, and sectional interest
+Different organisations have different codes of ethic but are in general one and the same
+Diff words, same meaning
+Laws and policies are the driving factor of any organisation
+Sys admin is privileged position, making you a target, need to make rational decisions, face tought choices, need to act in user's interest
+Dunno what to do, ask more, seek clarification, express concerns, get in WRITING, keep records/trials, identify allies/good peeps/etc
+Ask peeps about what is right and what is wrong, do it in meeting or private talks, tell how the products benefits the users and what are the side effects
+End of the day, Do a GOOD JOB!
+
+
+
